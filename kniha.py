@@ -21,19 +21,24 @@ class Kniha():
         else:
             self.__pocet_stran = pocet
 
-    def get_meno(self):
+    def __get_nazov(self):
         return self.__nazov
 
 
-    def get_pocet(self):
+    def __get_pocet(self):
         return self.__pocet_stran
 
+
+    nazov = property(__get_nazov, __get_nazov) # atribut vytvorený cez property
 
 
 
 kniha1 = Kniha('Zaklínač', 50)         # referencia na objekt/inštancia
 kniha2 = Kniha('Harry Potter', 450)
-print(kniha1.get_meno())
+kniha1.nazov = 'Poprežie'
+kniha1.set_nazov = 'Zaklináč'
+
+
 
 #print(kniha1.parametre_knihy())         # aplikovanie metody na objekt
 #print(kniha1.pocet_stran)                # atribút
