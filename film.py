@@ -10,7 +10,7 @@ class Film():
         if len(nazov) < 3:
             raise ValueError('chyba kratky nazov')
         else:
-            self.nazov = nazov
+            self.__nazov = nazov
     
     def set_rok(self, rok):
         typ = type(rok)
@@ -19,7 +19,7 @@ class Film():
         if rok < 1888:
             raise ValueError('chyba neexistujuci rok')
         else:
-            self.rok = rok
+            self.__rok = rok
 
     def set_zaner(self, zaner):
         zoznam = ['akčný', 'triler', 'horor', 'romantický', 'dráma',
@@ -27,10 +27,22 @@ class Film():
         if zaner not in zoznam:
             raise ValueError('chyba taky zaner neexistuje')
         else:
-            self.zaner = zaner
+            self.__zaner = zaner
     
     def vypis_film(self):
-        print(f'Názov filmu: {self.nazov}, Rok natočenia: {self.rok}, Žáner: {self.zaner}')
+        print(f'Názov filmu: {self.__nazov}, Rok natočenia: {self.__rok}, Žáner: {self.__zaner}')
+
+    def get_nazov(self):
+        return self.__nazov
+    
+    def get_rok(self):
+        return self.__rok
+    
+    def get_zaner(self):
+        return self.__zaner
+
+    rok = property(get_rok, set_rok)
+    zaner = property(get_zaner, set_zaner)
 
             
 #film1 = Film('a', 1998, 'akčný')               # chyba krátky názov
@@ -38,5 +50,4 @@ class Film():
 #film3 = Film('Rýchlo a zbesilo', 'aa', 'akčný') # chyba rok nie je cislo
 #film4 = Film('Rýchlo a zbesilo', 2001, 'n')      # chyba zanru
 film5 = Film('Rýchlo a zbesilo', 2001, 'akčný') # správny objekt
-film5.vypis_film()
-
+#film5.vypis_film()
