@@ -12,7 +12,7 @@ class Film():
         else:
             self.__nazov = nazov
     
-    def set_rok(self, rok):
+    def __set_rok(self, rok):
         typ = type(rok)
         if typ != int:
             raise ValueError('chyba rok musi byt cislo')
@@ -21,7 +21,7 @@ class Film():
         else:
             self.__rok = rok
 
-    def set_zaner(self, zaner):
+    def __set_zaner(self, zaner):
         zoznam = ['akčný', 'triler', 'horor', 'romantický', 'dráma',
                   'animovaný', 'biografický', 'sci-fi', 'dobrodružný']
         if zaner not in zoznam:
@@ -35,14 +35,14 @@ class Film():
     def get_nazov(self):
         return self.__nazov
     
-    def get_rok(self):
+    def __get_rok(self):
         return self.__rok
     
-    def get_zaner(self):
+    def __get_zaner(self):
         return self.__zaner
 
-    rok = property(get_rok, set_rok)
-    zaner = property(get_zaner, set_zaner)
+    rok = property(__get_rok, __set_rok)
+    zaner = property(__get_zaner, __set_zaner)
 
             
 #film1 = Film('a', 1998, 'akčný')               # chyba krátky názov
