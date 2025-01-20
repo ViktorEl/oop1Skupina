@@ -29,10 +29,14 @@ class Film():
         else:
             self.zaner = zaner
     
+    def vypis_film(self):
+        print(f'Názov filmu: {self.nazov}, Rok natočenia: {self.rok}, Žáner: {self.zaner}')
+
             
 #film1 = Film('a', 1998, 'akčný')               # chyba krátky názov
 #film2 = Film('Rýchlo a zbesilo', 5, 'akčný')   # chyba rok
 #film3 = Film('Rýchlo a zbesilo', 'aa', 'akčný') # chyba rok nie je cislo
 #film4 = Film('Rýchlo a zbesilo', 2001, 'n')      # chyba zanru
 film5 = Film('Rýchlo a zbesilo', 2001, 'akčný') # správny objekt
+film5.vypis_film()
 
