@@ -3,8 +3,8 @@ class Film():
 
     def __init__(self, nazov, rok, zaner):
         self.set_nazov(nazov)
-        self.set_rok(rok)
-        self.set_zaner(zaner)
+        self.__set_rok(rok)
+        self.__set_zaner(zaner)
     
     def set_nazov(self, nazov):
         if len(nazov) < 3:
@@ -44,10 +44,18 @@ class Film():
     rok = property(__get_rok, __set_rok)
     zaner = property(__get_zaner, __set_zaner)
 
-            
+    def __str__(self):      # magická metoda
+        return f'{self.__nazov} {self.__rok} {self.__zaner}'
+      
+
+
+
 #film1 = Film('a', 1998, 'akčný')               # chyba krátky názov
 #film2 = Film('Rýchlo a zbesilo', 5, 'akčný')   # chyba rok
 #film3 = Film('Rýchlo a zbesilo', 'aa', 'akčný') # chyba rok nie je cislo
 #film4 = Film('Rýchlo a zbesilo', 2001, 'n')      # chyba zanru
 film5 = Film('Rýchlo a zbesilo', 2001, 'akčný') # správny objekt
 #film5.vypis_film()
+#print(dir(film5))                              #vypise vsetky atributy a metody pre objekt
+
+print(film5)
