@@ -47,6 +47,14 @@ class Film():
     def __str__(self):      # magická metoda
         return f'{self.__nazov} {self.__rok} {self.__zaner}'
       
+    def __eq__(self, other):
+        if isinstance(other, Film):
+            if other.__nazov == self.__nazov:
+                return True
+            else:
+                return False
+        return False
+        
 
 
 
@@ -57,5 +65,9 @@ class Film():
 film5 = Film('Rýchlo a zbesilo', 2001, 'akčný') # správny objekt
 #film5.vypis_film()
 #print(dir(film5))                              #vypise vsetky atributy a metody pre objekt
+film6 = Film('Rýchlo', 2001, 'akčný')
+film7 = 'Rychlo a zbesilo'
+film8 = Film('Rýchlo', 2001, 'akčný')
 
-print(film5)
+
+
