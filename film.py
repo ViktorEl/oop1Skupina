@@ -44,6 +44,7 @@ class Film():
     rok = property(__get_rok, __set_rok)
     zaner = property(__get_zaner, __set_zaner)
 
+
     def __str__(self):      # magická metoda
         return f'{self.__nazov} {self.__rok} {self.__zaner}'
       
@@ -69,5 +70,11 @@ film6 = Film('Rýchlo', 2001, 'akčný')
 film7 = 'Rychlo a zbesilo'
 film8 = Film('Rýchlo', 2001, 'akčný')
 
+zoznam1 = [1, 2, 3]
+zoznam2 = [1, 2, 3]
 
+print(zoznam1 == zoznam2)
+
+
+ 
 
