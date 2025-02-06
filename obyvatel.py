@@ -31,6 +31,8 @@ class Obyvatel():
             raise ValueError('chyba nespravny vek')
         self.vek = vek
 
+    def get_vek(self):
+        pass
 
 #clovek1 = Obyvatel('Jano')
 #clovek1.set_meno(15)           # kontrola stringu
