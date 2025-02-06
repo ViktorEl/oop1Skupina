@@ -32,11 +32,11 @@ class Obyvatel():
         self.vek = vek
 
 
-
-clovek1 = Obyvatel('Jano')
+#clovek1 = Obyvatel('Jano')
 #clovek1.set_meno(15)           # kontrola stringu
 #clovek1.set_meno('Jano85')      # kontrola len znakov abecedy
 #clovek1.set_meno('')            # prazdne
 #clovek1.set_meno('Ja')           # kratke meno
+
 
 
