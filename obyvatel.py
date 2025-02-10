@@ -33,6 +33,9 @@ class Obyvatel():
 
     def get_vek(self):
         return self.vek
+    
+    def get_pohlavie(self):
+        return self.pohlavie
 
 
 

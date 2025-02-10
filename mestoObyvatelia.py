@@ -19,6 +19,14 @@ class MestoObyvatelia():
                 pocitadlo += 1
         return pocitadlo
 
+    def spocitaj_obyvatelov_podla_pohlavia(self, pohlavie):
+        pocitadlo = 0
+        for obyvatel in self.obyvatelia:
+            pohlavie_obyvatela = obyvatel.get_pohlavie()
+            if pohlavie_obyvatela == pohlavie:
+                pocitadlo += 1
+        return pocitadlo
+
 
 
 mesto1 = MestoObyvatelia('Roznava')
@@ -30,3 +38,4 @@ mesto1.uloz_obyvatela('Anna', 16, 'z')
 mesto1.uloz_obyvatela('Milan', 19, 'm')
 
 print(mesto1.spocitaj_obyvatelov_podla_veku(15))
+print(mesto1.spocitaj_obyvatelov_podla_pohlavia('m'))
