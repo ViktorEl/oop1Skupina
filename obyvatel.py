@@ -32,7 +32,9 @@ class Obyvatel():
         self.vek = vek
 
     def get_vek(self):
-        pass
+        return self.vek
+
+
 
 #clovek1 = Obyvatel('Jano')
 #clovek1.set_meno(15)           # kontrola stringu
