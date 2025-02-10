@@ -37,6 +37,16 @@ class Obyvatel():
     def get_pohlavie(self):
         return self.pohlavie
 
+    def __eq__(self, other):
+        if isinstance(other, Obyvatel):
+            if other.meno == self.meno:
+                return True
+            return False
+        return False
+        
+    def __str__(self):
+        return f'{self.meno} {self.vek} {self.pohlavie}'
+
 
 
 #clovek1 = Obyvatel('Jano')
@@ -45,5 +55,9 @@ class Obyvatel():
 #clovek1.set_meno('')            # prazdne
 #clovek1.set_meno('Ja')           # kratke meno
 
+clovek2 = Obyvatel('Jano', 15, 'm')
+#clovek3 = Obyvatel('Jano', 25, 'm')
 
+#print(clovek2 == clovek3)      # porovnavanie objektov pomocou metody __eq__
 
+print(clovek2)

@@ -27,6 +27,13 @@ class MestoObyvatelia():
                 pocitadlo += 1
         return pocitadlo
 
+    def __str__(self):
+        obyvatelia = ''
+        for obyvatel in self.obyvatelia:
+            obyvatelia += f'{obyvatel.meno} {obyvatel.vek} {obyvatel.pohlavie}\n'
+        return obyvatelia
+
+
 
 
 mesto1 = MestoObyvatelia('Roznava')
@@ -39,3 +46,4 @@ mesto1.uloz_obyvatela('Milan', 19, 'm')
 
 print(mesto1.spocitaj_obyvatelov_podla_veku(15))
 print(mesto1.spocitaj_obyvatelov_podla_pohlavia('m'))
+print(mesto1)
