@@ -30,6 +30,9 @@ class BankovyUcet():
     def __get_majitel(self):
         return self.__majitel
     
+    def get_zostatok(self):
+        return self.__zostatok
+    
     majitel = property(__get_majitel)
 
 

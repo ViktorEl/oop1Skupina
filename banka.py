@@ -14,10 +14,25 @@ class Banka():
                 raise ValueError('chyba take meno uz existuje')
         self.zoznam.append(ucet)
 
+    def zrus_ucet(self, meno):
+        for objekt in self.zoznam:
+            if objekt.majitel == meno:
+                if objekt.get_zostatok() == 0:
+                    self.zoznam.remove(objekt)
+                    return
+                else:
+                    raise ValueError('chyba mate na ucte este peniaze')
+        return 'Chyba ucet neexistuje'
+
+ 
+
+
+
 
 
 vub = Banka('vub')
 vub.zaloz_ucet('Radovan')
+vub.zrus_ucet('Radovan')
 
 
 
