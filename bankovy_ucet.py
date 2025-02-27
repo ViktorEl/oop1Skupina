@@ -33,12 +33,7 @@ class BankovyUcet():
     majitel = property(__get_majitel)
 
 
-daniel = BankovyUcet('Daniel')  # zalozenie uctu
-daniel.vklad(60)
-daniel.vyber(20)
-daniel.vyber(13.80)
-print(daniel.majitel)
-print(daniel)
+
 
 
         
