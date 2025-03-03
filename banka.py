@@ -5,6 +5,7 @@ class Banka():
     def __init__(self, nazov):
         self.nazov = nazov
         self.zoznam = []
+        self.__interny_ucet = BankovyUcet(nazov, zostatok=0)
 
     def zaloz_ucet(self, meno, zostatok=0):
         ucet = BankovyUcet(meno, zostatok)
@@ -40,7 +41,20 @@ class Banka():
             raise ValueError('chyba klient neexistuje')
 
     def vloz_na_ucet(self, meno, suma):
+        ucet = self.__najdi_ucet(meno)
+        ucet.vklad(suma)
 
+    def vyber_z_uctu(self, meno, suma):
+        ucet = self.__najdi_ucet(meno)
+        zostatok_na_ucte = ucet.get_zostatok()
+        suma_s_poplatkom = suma * 1.01
+        if suma_s_poplatkom > zostatok_na_ucte:
+            raise ValueError('chyba nemate dostatok penazi')
+        else:
+            ucet.vyber(suma)
+            poplatok = suma_s_poplatkom - suma
+            self.__interny_ucet.vklad(poplatok)
+            ucet.vyber(poplatok)
  
 
 
