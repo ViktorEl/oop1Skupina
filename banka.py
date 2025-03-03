@@ -6,8 +6,8 @@ class Banka():
         self.nazov = nazov
         self.zoznam = []
 
-    def zaloz_ucet(self, meno, suma=0):
-        ucet = BankovyUcet(meno, suma)
+    def zaloz_ucet(self, meno, zostatok=0):
+        ucet = BankovyUcet(meno, zostatok)
         for objekt in self.zoznam:
             meno_majitela = objekt.majitel
             if meno_majitela == meno:
@@ -15,14 +15,31 @@ class Banka():
         self.zoznam.append(ucet)
 
     def zrus_ucet(self, meno):
+        existuje_majitel = False
+        nulovy_zostatok = False
         for objekt in self.zoznam:
             if objekt.majitel == meno:
+                existuje_majitel = True
                 if objekt.get_zostatok() == 0:
+                    nulovy_zostatok =  True
                     self.zoznam.remove(objekt)
-                    return
-                else:
-                    raise ValueError('chyba mate na ucte este peniaze')
-        return 'Chyba ucet neexistuje'
+        if existuje_majitel == False:
+            raise ValueError('Chyba klient neexistuje')
+        if nulovy_zostatok == False:
+            raise ValueError('chyba nemáte nulový zostatok')
+
+
+    def __najdi_ucet(self, meno):
+        existuje_ucet = False
+        for objekt in self.zoznam:
+            meno_majitela_uctu = objekt.majitel
+            if meno_majitela_uctu == meno:
+                existuje_ucet = True
+                return objekt
+        if not existuje_ucet:
+            raise ValueError('chyba klient neexistuje')
+
+    def vloz_na_ucet(self, meno, suma):
 
  
 
