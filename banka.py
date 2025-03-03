@@ -56,7 +56,27 @@ class Banka():
             self.__interny_ucet.vklad(poplatok)
             ucet.vyber(poplatok)
  
+    def vyber_vsetko(self, meno):
+        ucet = self.__najdi_ucet(meno)
+        suma_na_ucte = ucet.get_zostatok()
+        suma_na_vyplatenie = suma_na_ucte / 1.01
+        ucet.vyber(suma_na_vyplatenie)
+        poplatok_banke = suma_na_ucte - suma_na_vyplatenie
+        self.__interny_ucet.vklad(poplatok_banke)
+        ucet.vyber(poplatok_banke)
 
+    def prevod(self, meno_odosielatel, meno_prijemca, suma):
+        ucet_odosielatel = self.__najdi_ucet(meno_odosielatel)
+        ucet_prijemca = self.__najdi_ucet(meno_prijemca)
+        zostatok_odosielatel = ucet_odosielatel.get_zostatok()
+        suma_s_poplatkom = suma * 1.01
+        if suma_s_poplatkom > zostatok_odosielatel:
+            raise ValueError('chyba nemate dostatok financii na prevod')
+        ucet_prijemca.vklad(suma)
+        self.__interny_ucet.vklad(suma_s_poplatkom - suma)
+        ucet_odosielatel.vyber(suma_s_poplatkom)
+  
+    
 
 
 
