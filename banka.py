@@ -76,14 +76,26 @@ class Banka():
         self.__interny_ucet.vklad(suma_s_poplatkom - suma)
         ucet_odosielatel.vyber(suma_s_poplatkom)
   
-    
-
-
+    def __str__(self):
+        vypis_ucty = f'{self.__interny_ucet}\n'
+        for objekt in self.zoznam:
+            meno_majitela = objekt.majitel
+            zostatok = objekt.get_zostatok()
+            vypis_ucty += f'{meno_majitela} zostatok: {zostatok}\n'
+        return vypis_ucty
 
 
 vub = Banka('vub')
-vub.zaloz_ucet('Radovan')
-vub.zrus_ucet('Radovan')
+vub.zaloz_ucet('Jano')
+vub.zaloz_ucet('Palo')
+vub.vloz_na_ucet('Jano', 50)
+vub.prevod('Jano', 'Palo', 10)
+#vub.vyber_z_uctu('Jano', 10)
+#vub.vyber_vsetko('Jano')
+#vub.zrus_ucet('Jano')
+print(vub)
+
+
 
 
 
