@@ -49,7 +49,7 @@ class Bojovnik(Postava):
         self.set_sila(sila)
 
     def set_sila(self, sila):
-        if isinstance(sila, int):
+        if not isinstance(sila, int):
             raise ValueError('chyba sila musi byt cele cislo')
         if sila < 1 or sila > 10:
             raise ValueError('chyba sila musi byt v rozsahu od 1 do 10')
@@ -61,4 +61,12 @@ class Bojovnik(Postava):
     def utok(self):
         utok_sila = random.randrange(1, self.sila+1)
         return f'Bojovnik zaútočil mečom silou {utok_sila}'
+
+class Kuzelnik(Bojovnik):
+
+    def __init__(self, meno, uroven, zivoty, sila, mana):
+        super().__init__(meno, uroven, zivoty, sila)
+        self.mana = mana
     
+    def set_mana(self, mana):
+        pass
