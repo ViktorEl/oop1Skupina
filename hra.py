@@ -66,7 +66,14 @@ class Kuzelnik(Bojovnik):
 
     def __init__(self, meno, uroven, zivoty, sila, mana):
         super().__init__(meno, uroven, zivoty, sila)
-        self.mana = mana
+        self.__mana = mana
     
     def set_mana(self, mana):
-        pass
+        if not isinstance(mana, int):
+            raise ValueError('chyba mana musi byt cele cislo')
+        if mana < 0 or mana > 20:
+            raise ValueError('chyba mana musi byt v rozsahu od 0 do 20')
+        self.__mana = mana
+    
+    def get_mana(self):
+        return self.__mana
