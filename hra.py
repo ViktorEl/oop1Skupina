@@ -77,3 +77,33 @@ class Kuzelnik(Bojovnik):
     
     def get_mana(self):
         return self.__mana
+    
+    def utok(self):
+        sila_utoku = random.randint(1, self.sila)
+        ubytok_many = sila_utoku * 2
+        if ubytok_many > self.__mana:
+            raise ValueError('Nemozete zoslat kuzlo pretoze nemate dostatok many doplnte si manu')
+        return f'Kuzelnik zautocil silou {sila_utoku} a pouzil na to {ubytok_many} many'
+    
+    def dopln_manu(self):
+        self.__mana = 50
+        return 'Doplnil si si manu na maximum'
+    
+class Paladin(Kuzelnik):
+
+    def __init__(self, meno, uroven, zivoty, sila, mana):
+        super().__init__(meno, uroven, zivoty, sila, mana)
+
+    def utok(self):
+        utok = random.randint(1, self.__sila)
+        kombinovany_utok = utok * 2
+        ubytok_many = utok * 3
+        if ubytok_many > self.__mana:
+            return f'Nemas dostatok many na kuzlo pouzil si len utok mecom silou {utok}'
+        if kombinovany_utok > 20:
+            self.__zivoty -= 2
+            self.__mana -= ubytok_many
+            return f'Pouzil si neskutocne kombo so silou {kombinovany_utok} so stratou many {ubytok_many} ale prisiel si o dva zivoty'
+        else:
+            self.__mana -= ubytok_many
+            return f'Pouzil si kombo so silou {kombinovany_utok} a stratil si pri tom manu {ubytok_many}'
