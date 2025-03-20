@@ -59,34 +59,34 @@ class Bojovnik(Postava):
         return self.__sila
 
     def utok(self):
-        utok_sila = random.randrange(1, self.sila+1)
+        utok_sila = random.randrange(1, self.__sila+1)
         return f'Bojovnik zaútočil mečom silou {utok_sila}'
 
 class Kuzelnik(Bojovnik):
 
     def __init__(self, meno, uroven, zivoty, sila, mana):
         super().__init__(meno, uroven, zivoty, sila)
-        self.__mana = mana
+        self.mana = mana
     
     def set_mana(self, mana):
         if not isinstance(mana, int):
             raise ValueError('chyba mana musi byt cele cislo')
         if mana < 0 or mana > 20:
             raise ValueError('chyba mana musi byt v rozsahu od 0 do 20')
-        self.__mana = mana
+        self.mana = mana
     
     def get_mana(self):
-        return self.__mana
+        return self.mana
     
     def utok(self):
-        sila_utoku = random.randint(1, self.sila)
+        sila_utoku = random.randint(1, self.get_sila())
         ubytok_many = sila_utoku * 2
-        if ubytok_many > self.__mana:
+        if ubytok_many > self.mana:
             raise ValueError('Nemozete zoslat kuzlo pretoze nemate dostatok many doplnte si manu')
         return f'Kuzelnik zautocil silou {sila_utoku} a pouzil na to {ubytok_many} many'
     
     def dopln_manu(self):
-        self.__mana = 50
+        self.mana = 50
         return 'Doplnil si si manu na maximum'
     
 class Paladin(Kuzelnik):
@@ -95,15 +95,23 @@ class Paladin(Kuzelnik):
         super().__init__(meno, uroven, zivoty, sila, mana)
 
     def utok(self):
-        utok = random.randint(1, self.__sila)
+        utok = random.randint(1, self.get_sila())
         kombinovany_utok = utok * 2
         ubytok_many = utok * 3
-        if ubytok_many > self.__mana:
+        if ubytok_many > self.get_mana():
             return f'Nemas dostatok many na kuzlo pouzil si len utok mecom silou {utok}'
         if kombinovany_utok > 20:
             self.__zivoty -= 2
-            self.__mana -= ubytok_many
+            self.mana -= ubytok_many
             return f'Pouzil si neskutocne kombo so silou {kombinovany_utok} so stratou many {ubytok_many} ale prisiel si o dva zivoty'
         else:
-            self.__mana -= ubytok_many
+            self.mana -= ubytok_many
             return f'Pouzil si kombo so silou {kombinovany_utok} a stratil si pri tom manu {ubytok_many}'
+
+        
+bojovik = Bojovnik('Rado', 2, 10, 10)
+print(bojovik.utok())
+kuzelnik = Kuzelnik('Alex', 3, 20, 10, 40)
+print(kuzelnik.utok())
+paladin = Paladin('Peter', 1, 5, 10, 40)
+print(paladin.utok())
