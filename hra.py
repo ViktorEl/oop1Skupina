@@ -41,6 +41,26 @@ class Postava():
         if zivoty < 0 or zivoty > 20:
             raise ValueError('chyba nespravna hodnota zivotov')
     
+    def suboj(self, postava2):
+        if not isinstance(postava2, (Bojovnik, Kuzelnik, Paladin)):
+            raise ValueError('Chyba taka postava neexistuje')
+        utok_postava1 = self.utok()
+        utok_postava2 = postava2.utok()
+        sila_utoku_postava1 = [int(slovo) for slovo in utok_postava1.split(' ') if slovo.isdigit()] 
+        sila_utoku_postava2 = [int(slovo) for slovo in utok_postava2.split(' ') if slovo.isdigit()]
+        sila_utoku_postava1 = sila_utoku_postava1[0] if sila_utoku_postava1 else 0
+        sila_utoku_postava2 = sila_utoku_postava2[0] if sila_utoku_postava2 else 0
+        if sila_utoku_postava1 > sila_utoku_postava2:
+            return f'Vyhrava {self.get_meno()}'
+        elif sila_utoku_postava1 < sila_utoku_postava2:
+            return f'Vyhrava {postava2.get_meno()}'
+        else:
+            if self.get_uroven() > postava2.get_uroven():
+                return f'Vyhrava {self.get_meno()}'
+            elif self.get_uroven() < postava2.get_uroven():
+                return f'Vyhrava {postava2.get_meno()}'
+            else:
+                return 'Remiza'
 
 class Bojovnik(Postava):
 
@@ -115,3 +135,5 @@ kuzelnik = Kuzelnik('Alex', 3, 20, 10, 40)
 print(kuzelnik.utok())
 paladin = Paladin('Peter', 1, 5, 10, 40)
 print(paladin.utok())
+
+print(bojovik.suboj(kuzelnik))
