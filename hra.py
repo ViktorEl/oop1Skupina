@@ -82,6 +82,8 @@ class Bojovnik(Postava):
         utok_sila = random.randrange(1, self.__sila+1)
         return f'Bojovnik zaútočil mečom silou {utok_sila}'
 
+
+        
 class Kuzelnik(Bojovnik):
 
     def __init__(self, meno, uroven, zivoty, sila, mana):
