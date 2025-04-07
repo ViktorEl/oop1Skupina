@@ -29,7 +29,12 @@ class GUI(tkinter.Tk):
 
         tkinter.Button(self, text="Vymaz", font=("Arial", 15), command= lambda: self.matros.set('')).place(x=380, y=70)
 
-        tkinter.Button(self, text="Ukonči", font=("Arial", 15), background="red", fg="white", command=self.ukonci).place(x=10, y=120)
+        tkinter.Button(self, text="Ukonči", font=("Arial", 15), background="red", fg="white", command=self.ukonci).place(x=10, y=300)
+
+        tkinter.Label(self, text="Zadajte meno:", font=("Arial", 15)).place(x=10, y=130)
+        self.zmena_mena = tkinter.StringVar()
+        tkinter.Entry(self, textvariable=self.zmena_mena, font=("Arial", 15)).place(x=150, y=130)
+        tkinter.Button(self, text="Zmeň meno", font=("Arial", 15), background="lightblue", command=self.zmen_meno).place(x=390, y=125)
 
 
 
@@ -52,5 +57,9 @@ class GUI(tkinter.Tk):
 
     def ukonci(self):
         self.destroy()
+
+    def zmen_meno(self):
+        meno_zmenene = self.zmena_mena.get()
+        self.robot.meno = meno_zmenene
 
 GUI()
