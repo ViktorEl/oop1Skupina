@@ -1,5 +1,6 @@
 from robot import Robot
 import tkinter
+from tkinter import messagebox
 
 
 class GUI(tkinter.Tk):
@@ -60,6 +61,10 @@ class GUI(tkinter.Tk):
 
     def zmen_meno(self):
         meno_zmenene = self.zmena_mena.get()
-        self.robot.meno = meno_zmenene
+        try:
+            self.robot.set_meno(meno_zmenene)
+        except ValueError as chyba:
+            messagebox.showerror("chyba", chyba)
+            
 
 GUI()
