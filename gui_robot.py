@@ -1,7 +1,7 @@
 from robot import Robot
 import tkinter
 from tkinter import messagebox
-
+import random
 
 class GUI(tkinter.Tk):
 
@@ -12,7 +12,7 @@ class GUI(tkinter.Tk):
         self.robot = Robot('Jozo', 'Zelezo')
         self.canvas = tkinter.Canvas(self, width=200, height=200)
         self.canvas.place(x=400, y=200)
-        self.obrazok = tkinter.PhotoImage(file='robot.png')
+        
         self.prostredie()
         self.mainloop()
 
@@ -49,12 +49,11 @@ class GUI(tkinter.Tk):
     def vypis_material(self):
         self.matros.set(self.robot.matros())
 
-    def zobraz_obrazok(self):
-        self.canvas.create_image(120, 120, anchor=tkinter.CENTER, image=self.obrazok)
+    
 
     def vypis_a_nakresli(self):
         self.vypis_pozdrav()
-        self.zobraz_obrazok()
+        self.zmen_obrazok()
 
     def ukonci(self):
         self.destroy()
@@ -66,5 +65,10 @@ class GUI(tkinter.Tk):
         except ValueError as chyba:
             messagebox.showerror("chyba", chyba)
             
+
+    def zmen_obrazok(self):
+        self.obrazok = tkinter.PhotoImage(file="robot.png")
+        self.canvas.create_image(120, 120, anchor=tkinter.CENTER, image=self.obrazok)
+
 
 GUI()
